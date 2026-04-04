@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyGamerSetup - Monte seu PC Gamer</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="js/config.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <h1>my<span>gamer</span>setup</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="nav-link active" data-target="home">Home</a></li>
+                    <li><a href="#" class="nav-link" data-target="used">PCs Usados</a></li>
+                    <li><a href="#" class="nav-link" data-target="tutorials">Tutoriais</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section id="home-section" class="content-section active">
+                <section class="hero">
+                    <div class="hero-content">
+                        <h2>Os Melhores <span>Setups Gamer</span></h2>
+                        <p>Do básico ao entusiasta, encontre o PC ideal para o seu nível de jogo com os melhores preços do mercado.</p>
+                        <button class="btn-primary" onclick="document.getElementById('pc-categories').scrollIntoView({behavior: 'smooth'})">Ver Setups</button>
+                    </div>
+                    <div class="hero-image">
+                        <div class="pc-3d-model">
+                            <img src="https://cwsmgmt.corsair.com/pdp/vengeance-i7400/images/vengeance-i7400-hero.png" alt="PC Gamer Top" class="pc-hero-img">
+                        </div>
+                    </div>
+                </section>
+
+                <section id="pc-categories" class="pc-categories">
+                    <h2>Escolha seu <span>Nível</span></h2>
+                    <div class="pc-grid">
+                        <!-- PC do Povo -->
+                        <div class="pc-card" data-tier="povo">
+                            <div class="pc-badge">Econômico</div>
+                            <img src="https://images.unsplash.com/photo-1587202377425-8b6033052194?auto=format&fit=crop&q=80&w=400" alt="PC do Povo">
+                            <div class="pc-info">
+                                <h3>PC do Povo</h3>
+                                <div class="pc-stats">
+                                    <div class="stat"><span>Valor:</span> R$ 2.500</div>
+                                    <div class="stat"><span>FPS:</span> 60+ (Full HD)</div>
+                                    <div class="stat"><span>Custo/Frame:</span> R$ 41,66</div>
+                                    <div class="stat"><span>Monitor:</span> 1080p 60Hz</div>
+                                </div>
+                                <button class="btn-details">Ver Componentes</button>
+                            </div>
+                        </div>
+                        <!-- PC Básico -->
+                        <div class="pc-card" data-tier="basico">
+                            <div class="pc-badge">Entrada</div>
+                            <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&q=80&w=400" alt="PC Básico">
+                            <div class="pc-info">
+                                <h3>PC Básico</h3>
+                                <div class="pc-stats">
+                                    <div class="stat"><span>Valor:</span> R$ 3.800</div>
+                                    <div class="stat"><span>FPS:</span> 100+ (Full HD)</div>
+                                    <div class="stat"><span>Custo/Frame:</span> R$ 38,00</div>
+                                    <div class="stat"><span>Monitor:</span> 1080p 75Hz</div>
+                                </div>
+                                <button class="btn-details">Ver Componentes</button>
+                            </div>
+                        </div>
+                        <!-- PC Intermediário -->
+                        <div class="pc-card" data-tier="intermediario">
+                            <div class="pc-badge">Equilibrado</div>
+                            <img src="https://images.unsplash.com/photo-1547082299-de196ea013d6?auto=format&fit=crop&q=80&w=400" alt="PC Intermediário">
+                            <div class="pc-info">
+                                <h3>PC Intermediário</h3>
+                                <div class="pc-stats">
+                                    <div class="stat"><span>Valor:</span> R$ 5.500</div>
+                                    <div class="stat"><span>FPS:</span> 144+ (Full HD)</div>
+                                    <div class="stat"><span>Custo/Frame:</span> R$ 38,19</div>
+                                    <div class="stat"><span>Monitor:</span> 1080p 144Hz</div>
+                                </div>
+                                <button class="btn-details">Ver Componentes</button>
+                            </div>
+                        </div>
+                        <!-- PC Alto Desempenho -->
+                        <div class="pc-card" data-tier="alto">
+                            <div class="pc-badge">Performance</div>
+                            <img src="https://images.unsplash.com/photo-1625842268584-8f3bf9ff16a0?auto=format&fit=crop&q=80&w=400" alt="PC Alto Desempenho">
+                            <div class="pc-info">
+                                <h3>PC Alto Desempenho</h3>
+                                <div class="pc-stats">
+                                    <div class="stat"><span>Valor:</span> R$ 8.500</div>
+                                    <div class="stat"><span>FPS:</span> 100+ (Quad HD)</div>
+                                    <div class="stat"><span>Custo/Frame:</span> R$ 85,00</div>
+                                    <div class="stat"><span>Monitor:</span> 1440p 144Hz</div>
+                                </div>
+                                <button class="btn-details">Ver Componentes</button>
+                            </div>
+                        </div>
+                        <!-- PC Top -->
+                        <div class="pc-card" data-tier="top">
+                            <div class="pc-badge">Elite</div>
+                            <img src="https://images.unsplash.com/photo-1603481546238-487240415921?auto=format&fit=crop&q=80&w=400" alt="PC Top">
+                            <div class="pc-info">
+                                <h3>PC Top</h3>
+                                <div class="pc-stats">
+                                    <div class="stat"><span>Valor:</span> R$ 12.000</div>
+                                    <div class="stat"><span>FPS:</span> 144+ (Quad HD)</div>
+                                    <div class="stat"><span>Custo/Frame:</span> R$ 83,33</div>
+                                    <div class="stat"><span>Monitor:</span> 1440p 240Hz</div>
+                                </div>
+                                <button class="btn-details">Ver Componentes</button>
+                            </div>
+                        </div>
+                        <!-- PC Entusiasta -->
+                        <div class="pc-card" data-tier="entusiasta">
+                            <div class="pc-badge">Ultimate</div>
+                            <img src="https://images.unsplash.com/photo-1614624532983-4ce03382d63d?auto=format&fit=crop&q=80&w=400" alt="PC Entusiasta">
+                            <div class="pc-info">
+                                <h3>PC Entusiasta</h3>
+                                <div class="pc-stats">
+                                    <div class="stat"><span>Valor:</span> R$ 25.000</div>
+                                    <div class="stat"><span>FPS:</span> 120+ (4K)</div>
+                                    <div class="stat"><span>Custo/Frame:</span> R$ 208,33</div>
+                                    <div class="stat"><span>Monitor:</span> 4K 144Hz+</div>
+                                </div>
+                                <button class="btn-details">Ver Componentes</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+            <section id="used-section" class="content-section">
+                <h2>PCs <span>Usados & Revisados</span></h2>
+                <p>Computadores de clientes que passaram por nossa manutenção rigorosa e estão prontos para um novo dono.</p>
+                <div class="used-grid" id="used-grid">
+                    <!-- Será preenchido via JS -->
+                    <div class="used-card">
+                        <img src="https://images.unsplash.com/photo-1587831990711-23ca6441447b?auto=format&fit=crop&q=80&w=400" alt="PC Usado 1">
+                        <div class="used-info">
+                            <h3>PC Gamer GTX 1660 Super</h3>
+                            <p>Manutenção: Limpeza completa + Troca de pasta térmica (Arctic MX-4)</p>
+                            <div class="used-price">R$ 2.200,00</div>
+                            <button class="btn-primary">Ver Detalhes</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="tutorials-section" class="content-section">
+                <h2>Aprenda a <span>Escolher</span></h2>
+                <p>Série de tutoriais para você se tornar um expert em hardware.</p>
+                <div class="tutorials-grid">
+                    <div class="video-card">
+                        <div class="video-placeholder">
+                            <i class="fab fa-youtube"></i>
+                            <span>Vídeo em Breve: Como escolher o Processador</span>
+                        </div>
+                        <h3>1. O Coração do PC: CPU</h3>
+                        <p>Entenda a diferença entre núcleos, threads e frequências.</p>
+                    </div>
+                    <div class="video-card">
+                        <div class="video-placeholder">
+                            <i class="fab fa-youtube"></i>
+                            <span>Vídeo em Breve: Placa de Vídeo e FPS</span>
+                        </div>
+                        <h3>2. O Motor Gráfico: GPU</h3>
+                        <p>Como equilibrar a GPU com seu monitor para não ter gargalo.</p>
+                    </div>
+                    <div class="video-card">
+                        <div class="video-placeholder">
+                            <i class="fab fa-youtube"></i>
+                            <span>Vídeo em Breve: Memória e Armazenamento</span>
+                        </div>
+                        <h3>3. Velocidade: RAM & SSD</h3>
+                        <p>Por que o NVMe mudou o jogo e quanta RAM você realmente precisa.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>my<span>gamer</span>setup</h3>
+                    <p>© 2024 MyGamerSetup. Todos os direitos reservados.</p>
+                </div>
+                <div class="footer-links">
+                    <ul>
+                        <li><a href="#">Sobre</a></li>
+                        <li><a href="#">Contato</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+                        <li><a href="#">API de Parceiros</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <div class="modal" id="result-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Sua Configuração Ideal</h2>
+            <div class="pc-config-result">
+                <!-- Aqui será inserido o resultado da configuração via JavaScript -->
+            </div>
+            <div class="total-price">
+                <div class="price-cash">
+                    <h3>À Vista</h3>
+                    <p class="price">R$ 0,00</p>
+                </div>
+                <div class="price-installment">
+                    <h3>Parcelado</h3>
+                    <p class="price">R$ 0,00</p>
+                </div>
+            </div>
+            <div class="result-actions">
+                <button class="btn-save">Salvar Configuração</button>
+                <button class="btn-share">Compartilhar</button>
+                <button class="btn-export">Exportar PDF</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
