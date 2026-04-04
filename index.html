@@ -20,8 +20,10 @@
             <nav>
                 <ul>
                     <li><a href="#" class="nav-link active" data-target="home">Home</a></li>
+                    <li><a href="#" class="nav-link" data-target="monitors">Monitores</a></li>
                     <li><a href="#" class="nav-link" data-target="used">PCs Usados</a></li>
                     <li><a href="#" class="nav-link" data-target="tutorials">Tutoriais</a></li>
+                    <li><a href="#" class="nav-link" data-target="contact">Contatos</a></li>
                 </ul>
             </nav>
         </header>
@@ -30,9 +32,9 @@
             <section id="home-section" class="content-section active">
                 <section class="hero">
                     <div class="hero-content">
-                        <h2>Os Melhores <span>Setups Gamer</span></h2>
+                        <h2>Os Melhores <span>Setups Gamer Hoje</span></h2>
                         <p>Do básico ao entusiasta, encontre o PC ideal para o seu nível de jogo com os melhores preços do mercado.</p>
-                        <button class="btn-primary" onclick="document.getElementById('pc-categories').scrollIntoView({behavior: 'smooth'})">Ver Setups</button>
+                        <div class="last-update">Última atualização: 04/04/2026</div>
                     </div>
                     <div class="hero-image">
                         <div class="pc-3d-model">
@@ -44,144 +46,108 @@
                 <section id="pc-categories" class="pc-categories">
                     <h2>Escolha seu <span>Nível</span></h2>
                     <div class="pc-grid">
-                        <!-- PC do Povo -->
-                        <div class="pc-card" data-tier="povo">
-                            <div class="pc-badge">Econômico</div>
-                            <img src="https://images.unsplash.com/photo-1587202377425-8b6033052194?auto=format&fit=crop&q=80&w=400" alt="PC do Povo">
-                            <div class="pc-info">
-                                <h3>PC do Povo</h3>
-                                <div class="pc-stats">
-                                    <div class="stat"><span>Valor:</span> R$ 2.500</div>
-                                    <div class="stat"><span>FPS:</span> 60+ (Full HD)</div>
-                                    <div class="stat"><span>Custo/Frame:</span> R$ 41,66</div>
-                                    <div class="stat"><span>Monitor:</span> 1080p 60Hz</div>
-                                </div>
-                                <button class="btn-details">Ver Componentes</button>
-                            </div>
-                        </div>
-                        <!-- PC Básico -->
-                        <div class="pc-card" data-tier="basico">
-                            <div class="pc-badge">Entrada</div>
-                            <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&q=80&w=400" alt="PC Básico">
-                            <div class="pc-info">
-                                <h3>PC Básico</h3>
-                                <div class="pc-stats">
-                                    <div class="stat"><span>Valor:</span> R$ 3.800</div>
-                                    <div class="stat"><span>FPS:</span> 100+ (Full HD)</div>
-                                    <div class="stat"><span>Custo/Frame:</span> R$ 38,00</div>
-                                    <div class="stat"><span>Monitor:</span> 1080p 75Hz</div>
-                                </div>
-                                <button class="btn-details">Ver Componentes</button>
-                            </div>
-                        </div>
-                        <!-- PC Intermediário -->
-                        <div class="pc-card" data-tier="intermediario">
-                            <div class="pc-badge">Equilibrado</div>
-                            <img src="https://images.unsplash.com/photo-1547082299-de196ea013d6?auto=format&fit=crop&q=80&w=400" alt="PC Intermediário">
-                            <div class="pc-info">
-                                <h3>PC Intermediário</h3>
-                                <div class="pc-stats">
-                                    <div class="stat"><span>Valor:</span> R$ 5.500</div>
-                                    <div class="stat"><span>FPS:</span> 144+ (Full HD)</div>
-                                    <div class="stat"><span>Custo/Frame:</span> R$ 38,19</div>
-                                    <div class="stat"><span>Monitor:</span> 1080p 144Hz</div>
-                                </div>
-                                <button class="btn-details">Ver Componentes</button>
-                            </div>
-                        </div>
-                        <!-- PC Alto Desempenho -->
-                        <div class="pc-card" data-tier="alto">
-                            <div class="pc-badge">Performance</div>
-                            <img src="https://images.unsplash.com/photo-1625842268584-8f3bf9ff16a0?auto=format&fit=crop&q=80&w=400" alt="PC Alto Desempenho">
-                            <div class="pc-info">
-                                <h3>PC Alto Desempenho</h3>
-                                <div class="pc-stats">
-                                    <div class="stat"><span>Valor:</span> R$ 8.500</div>
-                                    <div class="stat"><span>FPS:</span> 100+ (Quad HD)</div>
-                                    <div class="stat"><span>Custo/Frame:</span> R$ 85,00</div>
-                                    <div class="stat"><span>Monitor:</span> 1440p 144Hz</div>
-                                </div>
-                                <button class="btn-details">Ver Componentes</button>
-                            </div>
-                        </div>
-                        <!-- PC Top -->
-                        <div class="pc-card" data-tier="top">
-                            <div class="pc-badge">Elite</div>
-                            <img src="https://images.unsplash.com/photo-1603481546238-487240415921?auto=format&fit=crop&q=80&w=400" alt="PC Top">
-                            <div class="pc-info">
-                                <h3>PC Top</h3>
-                                <div class="pc-stats">
-                                    <div class="stat"><span>Valor:</span> R$ 12.000</div>
-                                    <div class="stat"><span>FPS:</span> 144+ (Quad HD)</div>
-                                    <div class="stat"><span>Custo/Frame:</span> R$ 83,33</div>
-                                    <div class="stat"><span>Monitor:</span> 1440p 240Hz</div>
-                                </div>
-                                <button class="btn-details">Ver Componentes</button>
-                            </div>
-                        </div>
-                        <!-- PC Entusiasta -->
-                        <div class="pc-card" data-tier="entusiasta">
-                            <div class="pc-badge">Ultimate</div>
-                            <img src="https://images.unsplash.com/photo-1614624532983-4ce03382d63d?auto=format&fit=crop&q=80&w=400" alt="PC Entusiasta">
-                            <div class="pc-info">
-                                <h3>PC Entusiasta</h3>
-                                <div class="pc-stats">
-                                    <div class="stat"><span>Valor:</span> R$ 25.000</div>
-                                    <div class="stat"><span>FPS:</span> 120+ (4K)</div>
-                                    <div class="stat"><span>Custo/Frame:</span> R$ 208,33</div>
-                                    <div class="stat"><span>Monitor:</span> 4K 144Hz+</div>
-                                </div>
-                                <button class="btn-details">Ver Componentes</button>
-                            </div>
-                        </div>
+                        <!-- Os cards serão preenchidos ou atualizados via JS para garantir a soma correta -->
                     </div>
                 </section>
+
+                <section class="searched-sites">
+                    <h3>Sites Pesquisados</h3>
+                    <div class="sites-logos">
+                        <a href="http://www.kabum.com.br" target="_blank" title="Kabum"><img src="https://logodownload.org/wp-content/uploads/2017/11/kabum-logo.png" alt="Kabum"></a>
+                        <a href="https://www.pichau.com.br" target="_blank" title="Pichau"><img src="https://logodownload.org/wp-content/uploads/2020/06/pichau-logo.png" alt="Pichau"></a>
+                        <a href="https://www.terabyteshop.com.br" target="_blank" title="Terabyte"><img src="https://www.terabyteshop.com.br/img/logo-terabyte.png" alt="Terabyte"></a>
+                        <a href="https://www.amazon.com.br/" target="_blank" title="Amazon"><img src="https://logodownload.org/wp-content/uploads/2014/04/amazon-logo.png" alt="Amazon"></a>
+                        <a href="https://www.mercadolivre.com.br/" target="_blank" title="Mercado Livre"><img src="https://logodownload.org/wp-content/uploads/2018/10/mercado-livre-logo.png" alt="Mercado Livre"></a>
+                        <a href="https://patoloco.com.br/" target="_blank" title="Patoloco"><img src="https://patoloco.com.br/assets/images/logo.png" alt="Patoloco"></a>
+                        <a href="https://www.alligatorshop.com.br/" target="_blank" title="Alligator Shop"><img src="https://www.alligatorshop.com.br/static/img/logo.png" alt="Alligator Shop"></a>
+                        <a href="https://www.gkinfostore.com.br/" target="_blank" title="GK Info Store"><img src="https://www.gkinfostore.com.br/static/img/logo.png" alt="GK Info Store"></a>
+                    </div>
+                </section>
+            </section>
+
+            <section id="monitors-section" class="content-section">
+                <h2>Monitores <span>Recomendados</span></h2>
+                <p>A tela ideal para extrair o máximo de cada configuração.</p>
+                <div class="monitors-grid" id="monitors-grid">
+                    <!-- Preenchido via JS -->
+                </div>
             </section>
 
             <section id="used-section" class="content-section">
                 <h2>PCs <span>Usados & Revisados</span></h2>
                 <p>Computadores de clientes que passaram por nossa manutenção rigorosa e estão prontos para um novo dono.</p>
+                
+                <a href="#" class="banner-send-pc nav-link" data-target="contact">
+                    <i class="fas fa-tools"></i>
+                    <span>Como nos enviar seu PC</span>
+                </a>
+
+                <div class="used-filters">
+                    <span>Ordenar por:</span>
+                    <select id="used-sort">
+                        <option value="price-asc">Menor Valor</option>
+                        <option value="price-desc">Maior Valor</option>
+                        <option value="fps-desc">Mais FPS</option>
+                        <option value="cost-frame-asc">Melhor Custo/Frame</option>
+                    </select>
+                </div>
+
                 <div class="used-grid" id="used-grid">
                     <!-- Será preenchido via JS -->
-                    <div class="used-card">
-                        <img src="https://images.unsplash.com/photo-1587831990711-23ca6441447b?auto=format&fit=crop&q=80&w=400" alt="PC Usado 1">
-                        <div class="used-info">
-                            <h3>PC Gamer GTX 1660 Super</h3>
-                            <p>Manutenção: Limpeza completa + Troca de pasta térmica (Arctic MX-4)</p>
-                            <div class="used-price">R$ 2.200,00</div>
-                            <button class="btn-primary">Ver Detalhes</button>
-                        </div>
-                    </div>
                 </div>
             </section>
 
             <section id="tutorials-section" class="content-section">
                 <h2>Aprenda a <span>Escolher</span></h2>
                 <p>Série de tutoriais para você se tornar um expert em hardware.</p>
-                <div class="tutorials-grid">
-                    <div class="video-card">
-                        <div class="video-placeholder">
+                <div class="tutorials-grid" id="tutorials-grid">
+                    <!-- Expandido via JS -->
+                </div>
+            </section>
+
+            <section id="contact-section" class="content-section">
+                <h2>Fale <span>Conosco</span></h2>
+                
+                <div class="contact-container">
+                    <div class="contact-video-section">
+                        <div class="video-placeholder big">
                             <i class="fab fa-youtube"></i>
-                            <span>Vídeo em Breve: Como escolher o Processador</span>
+                            <span>Vídeo: Como nos enviar seu PC</span>
                         </div>
-                        <h3>1. O Coração do PC: CPU</h3>
-                        <p>Entenda a diferença entre núcleos, threads e frequências.</p>
+                        <div class="video-description">
+                            <h3>Procedimento de Envio</h3>
+                            <p>Neste vídeo explicamos passo a passo como embalar seu computador com segurança, os documentos necessários e como funciona nosso processo de triagem, manutenção e anúncio para venda ou retorno após o serviço.</p>
+                        </div>
                     </div>
-                    <div class="video-card">
-                        <div class="video-placeholder">
-                            <i class="fab fa-youtube"></i>
-                            <span>Vídeo em Breve: Placa de Vídeo e FPS</span>
-                        </div>
-                        <h3>2. O Motor Gráfico: GPU</h3>
-                        <p>Como equilibrar a GPU com seu monitor para não ter gargalo.</p>
+
+                    <div class="contact-form-section">
+                        <h3>Envie uma Mensagem</h3>
+                        <form id="contact-form">
+                            <input type="text" placeholder="Seu Nome" required>
+                            <input type="email" placeholder="Seu E-mail" required>
+                            <textarea placeholder="Sua Mensagem" rows="5" required></textarea>
+                            <button type="submit" class="btn-primary">Enviar Mensagem</button>
+                        </form>
                     </div>
-                    <div class="video-card">
-                        <div class="video-placeholder">
-                            <i class="fab fa-youtube"></i>
-                            <span>Vídeo em Breve: Memória e Armazenamento</span>
+
+                    <div class="contact-methods">
+                        <h3>Outros Canais</h3>
+                        <div class="methods-grid">
+                            <a href="#" class="method-card"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                            <a href="#" class="method-card"><i class="fab fa-instagram"></i> Instagram</a>
+                            <a href="mailto:contato@sitepcgamer.com.br" class="method-card"><i class="fas fa-envelope"></i> E-mail</a>
                         </div>
-                        <h3>3. Velocidade: RAM & SSD</h3>
-                        <p>Por que o NVMe mudou o jogo e quanta RAM você realmente precisa.</p>
+                    </div>
+
+                    <div class="contact-map">
+                        <h3>Nossa Localização</h3>
+                        <div class="map-placeholder">
+                            <!-- Link do Google Maps -->
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.123456789!2d-46.68535!3d-23.62123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce50da1234567%3A0x123456789abcdef!2sAv.%20Santo%20Amaro%2C%205355%20-%20Santo%20Amaro%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2004701-000!5e0!3m2!1spt-BR!2sbr!4v1234567890" 
+                                width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                            <p>Avenida Sto Amaro 5355 - Sala de Games, São Paulo-SP Brasil</p>
+                        </div>
                     </div>
                 </div>
             </section>

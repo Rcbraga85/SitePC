@@ -137,19 +137,184 @@ nav ul li a.active::after {
     animation: fadeIn 0.5s ease-in-out;
 }
 
-/* Hero Image Custom */
-.pc-hero-img {
-    max-width: 100%;
-    height: auto;
-    filter: drop-shadow(0 0 30px rgba(138, 43, 226, 0.4));
-    animation: float 6s ease-in-out infinite;
+/* Hero Section Adjust */
+.last-update {
+    font-size: 0.9rem;
+    color: var(--accent-purple);
+    font-weight: 600;
+    margin-top: 1rem;
+    font-family: 'Orbitron', sans-serif;
 }
 
-/* PC Categories Grid */
-.pc-categories {
-    padding: 6rem 0;
+/* Searched Sites Section */
+.searched-sites {
+    padding: 4rem 0;
     text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    margin-top: 4rem;
 }
+
+.searched-sites h3 {
+    color: var(--accent-purple);
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+}
+
+.sites-logos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
+    align-items: center;
+}
+
+.sites-logos a {
+    filter: grayscale(100%) brightness(0.8);
+    transition: var(--transition-smooth);
+    display: block;
+    max-width: 120px;
+}
+
+.sites-logos a:hover {
+    filter: grayscale(0%) brightness(1);
+    transform: scale(1.1);
+}
+
+.sites-logos img {
+    max-width: 100%;
+    height: auto;
+    max-height: 40px;
+    object-fit: contain;
+}
+
+/* Banner Send PC */
+.banner-send-pc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gradient-primary);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    margin: 2rem 0;
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    gap: 1.5rem;
+    transition: var(--transition-smooth);
+    text-decoration: none;
+}
+
+.banner-send-pc:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 30px rgba(138, 43, 226, 0.4);
+    color: white;
+}
+
+.banner-send-pc i {
+    font-size: 2.5rem;
+}
+
+/* Used Filters */
+.used-filters {
+    margin: 2rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.used-filters select {
+    background: var(--bg-card);
+    color: white;
+    border: 1px solid var(--accent-purple);
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    outline: none;
+}
+
+/* Contact Page Styles */
+.contact-container {
+    display: grid;
+    gap: 4rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.video-placeholder.big {
+    height: 400px;
+}
+
+.contact-form-section form {
+    display: grid;
+    gap: 1rem;
+    background: var(--bg-card);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.contact-form-section input, 
+.contact-form-section textarea {
+    background: var(--bg-dark);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 8px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+.contact-form-section input:focus, 
+.contact-form-section textarea:focus {
+    border-color: var(--accent-purple);
+    outline: none;
+}
+
+.methods-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.method-card {
+    background: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    font-weight: 600;
+}
+
+.method-card i {
+    display: block;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--accent-purple);
+}
+
+.map-placeholder {
+    background: var(--bg-card);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.map-placeholder p {
+    margin-top: 1rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* Modal Adjustments */
+.component-row {
+    grid-template-columns: 1.5fr 2.5fr 1fr 1fr; /* Mais espaço para o modelo */
+}
+
+.component-list-header {
+    grid-template-columns: 1.5fr 2.5fr 1fr 1fr;
+}
+
 
 .pc-grid {
     display: grid;
