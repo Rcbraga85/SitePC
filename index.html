@@ -24,6 +24,7 @@
                     <li><a href="#" class="nav-link" data-target="used">PCs Usados</a></li>
                     <li><a href="#" class="nav-link" data-target="tutorials">Tutoriais</a></li>
                     <li><a href="#" class="nav-link" data-target="contact">Contatos</a></li>
+                    <li><a href="#" class="nav-link" data-target="cart" id="cart-nav-link"><i class="fas fa-shopping-cart"></i> Carrinho</a></li>
                 </ul>
             </nav>
         </header>
@@ -38,7 +39,6 @@
                     </div>
                     <div class="hero-image">
                         <div class="pc-3d-model">
-                            <img src="https://cwsmgmt.corsair.com/pdp/vengeance-i7400/images/vengeance-i7400-hero.png" alt="PC Gamer Top" class="pc-hero-img">
                         </div>
                     </div>
                 </section>
@@ -53,14 +53,14 @@
                 <section class="searched-sites">
                     <h3>Sites Pesquisados</h3>
                     <div class="sites-logos">
-                        <a href="http://www.kabum.com.br" target="_blank" title="Kabum"><img src="https://logodownload.org/wp-content/uploads/2017/11/kabum-logo.png" alt="Kabum"></a>
-                        <a href="https://www.pichau.com.br" target="_blank" title="Pichau"><img src="https://logodownload.org/wp-content/uploads/2020/06/pichau-logo.png" alt="Pichau"></a>
-                        <a href="https://www.terabyteshop.com.br" target="_blank" title="Terabyte"><img src="https://www.terabyteshop.com.br/img/logo-terabyte.png" alt="Terabyte"></a>
-                        <a href="https://www.amazon.com.br/" target="_blank" title="Amazon"><img src="https://logodownload.org/wp-content/uploads/2014/04/amazon-logo.png" alt="Amazon"></a>
-                        <a href="https://www.mercadolivre.com.br/" target="_blank" title="Mercado Livre"><img src="https://logodownload.org/wp-content/uploads/2018/10/mercado-livre-logo.png" alt="Mercado Livre"></a>
-                        <a href="https://patoloco.com.br/" target="_blank" title="Patoloco"><img src="https://patoloco.com.br/assets/images/logo.png" alt="Patoloco"></a>
-                        <a href="https://www.alligatorshop.com.br/" target="_blank" title="Alligator Shop"><img src="https://www.alligatorshop.com.br/static/img/logo.png" alt="Alligator Shop"></a>
-                        <a href="https://www.gkinfostore.com.br/" target="_blank" title="GK Info Store"><img src="https://www.gkinfostore.com.br/static/img/logo.png" alt="GK Info Store"></a>
+                        <a href="http://www.kabum.com.br" target="_blank" title="Kabum"><img src="images/kabum.png" alt="Kabum"></a>
+                        <a href="https://www.pichau.com.br" target="_blank" title="Pichau"><img src="images/pichau.png" alt="Pichau"></a>
+                        <a href="https://www.terabyteshop.com.br" target="_blank" title="Terabyte"><img src="images/tera.png" alt="Terabyte"></a>
+                        <a href="https://www.amazon.com.br/" target="_blank" title="Amazon"><img src="images/amazon.png" alt="Amazon"></a>
+                        <a href="https://www.mercadolivre.com.br/" target="_blank" title="Mercado Livre"><img src="images/ml.png" alt="Mercado Livre"></a>
+                        <a href="https://patoloco.com.br/" target="_blank" title="Patoloco"><img src="images/pato.png" alt="Patoloco"></a>
+                        <a href="https://www.alligatorshop.com.br/" target="_blank" title="Alligator Shop"><img src="images/alligator.png" alt="Alligator Shop"></a>
+                        <a href="https://www.gkinfostore.com.br/" target="_blank" title="GK Info Store"><img src="images/gk.png" alt="GK Info Store"></a>
                     </div>
                 </section>
             </section>
@@ -92,8 +92,79 @@
                     </select>
                 </div>
 
-                <div class="used-grid" id="used-grid">
-                    <!-- Será preenchido via JS -->
+                <div class="pc-grid" id="used-grid">
+                    <!-- Será preenchido via JS com layout idêntico à Home -->
+                </div>
+            </section>
+
+            <section id="cart-section" class="content-section">
+                <h2>Seu <span>Carrinho</span></h2>
+                <div class="cart-container">
+                    <div class="cart-items" id="cart-items-list">
+                        <!-- Itens do carrinho -->
+                    </div>
+                    
+                    <div class="cart-checkout">
+                        <div class="checkout-form">
+                            <h3>Dados do Cliente</h3>
+                            <div class="form-group">
+                                <input type="text" placeholder="Nome Completo" required>
+                                <input type="text" placeholder="CPF" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" placeholder="E-mail" required>
+                                <input type="tel" placeholder="Telefone/WhatsApp" required>
+                            </div>
+                            
+                            <h3>Endereço de Entrega</h3>
+                            <div class="form-group">
+                                <input type="text" placeholder="CEP" id="cep-input" required>
+                                <input type="text" placeholder="Rua / Logradouro" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="Número" required>
+                                <input type="text" placeholder="Complemento">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="Bairro" required>
+                                <input type="text" placeholder="Cidade / Estado" required>
+                            </div>
+
+                            <h3>Forma de Pagamento</h3>
+                            <div class="payment-methods">
+                                <label class="payment-option">
+                                    <input type="radio" name="payment" value="pix" checked>
+                                    <span><i class="fas fa-qrcode"></i> PIX (15% Desconto)</span>
+                                </label>
+                                <label class="payment-option">
+                                    <input type="radio" name="payment" value="card">
+                                    <span><i class="fas fa-credit-card"></i> Cartão de Crédito</span>
+                                </label>
+                                <label class="payment-option">
+                                    <input type="radio" name="payment" value="boleto">
+                                    <span><i class="fas fa-barcode"></i> Boleto Bancário</span>
+                                </label>
+                            </div>
+                            
+                            <button class="btn-primary btn-finalize" id="finalize-order">Finalizar Pedido</button>
+                        </div>
+
+                        <div class="cart-summary">
+                            <h3>Resumo do Pedido</h3>
+                            <div class="summary-row">
+                                <span>Subtotal:</span>
+                                <span id="summary-subtotal">R$ 0,00</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Frete:</span>
+                                <span id="summary-shipping">R$ 0,00</span>
+                            </div>
+                            <div class="summary-row total">
+                                <span>Total:</span>
+                                <span id="summary-total">R$ 0,00</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -195,10 +266,58 @@
                 </div>
             </div>
             <div class="result-actions">
-                <button class="btn-save">Salvar Configuração</button>
-                <button class="btn-share">Compartilhar</button>
-                <button class="btn-export">Exportar PDF</button>
+                <button class="btn-share" id="btn-share-modal">Compartilhar</button>
+                <button class="btn-export" id="btn-email-modal">Enviar por E-mail</button>
             </div>
+        </div>
+    </div>
+
+    <!-- Novo Modal para Manutenção -->
+    <div class="modal" id="maintenance-modal">
+        <div class="modal-content mini-modal">
+            <span class="close-modal" id="close-maintenance">&times;</span>
+            <h3>Histórico de <span>Manutenção</span></h3>
+            <div id="maintenance-content" class="maintenance-list">
+                <!-- Preenchido via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Compartilhar -->
+    <div class="modal" id="share-modal">
+        <div class="modal-content mini-modal">
+            <span class="close-modal" id="close-share">&times;</span>
+            <h3>Compartilhar Configuração</h3>
+            <div class="share-options">
+                <a href="#" class="share-item x-social"><i class="fab fa-x-twitter"></i> X (Twitter)</a>
+                <a href="#" class="share-item insta-social"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="#" class="share-item face-social"><i class="fab fa-facebook"></i> Facebook</a>
+                <a href="#" class="share-item whats-social"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal E-mail -->
+    <div class="modal" id="email-modal">
+        <div class="modal-content mini-modal">
+            <span class="close-modal" id="close-email">&times;</span>
+            <h3>Enviar por E-mail</h3>
+            <form id="modal-email-form">
+                <input type="email" placeholder="Digite seu e-mail" required class="modal-input">
+                <div class="captcha-placeholder">
+                    <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+                    <!-- Simulação de captcha para o layout -->
+                    <div class="fake-captcha">
+                        <input type="checkbox" id="captcha-check">
+                        <label for="captcha-check">Não sou um robô</label>
+                        <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="reCAPTCHA">
+                    </div>
+                </div>
+                <div class="modal-form-buttons">
+                    <button type="button" class="btn-cancel" id="cancel-email">Cancelar</button>
+                    <button type="submit" class="btn-send">Enviar</button>
+                </div>
+            </form>
         </div>
     </div>
 

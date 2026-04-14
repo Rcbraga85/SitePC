@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Update active link
             navLinks.forEach(l => l.classList.remove('active'));
-            // Support for banners or other elements that might not be in the nav
             const matchingNavLink = document.querySelector(`.nav-link[data-target="${target}"]`);
             if (matchingNavLink) matchingNavLink.classList.add('active');
 
@@ -28,15 +27,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Global Data
+    let cart = [];
+
     // PC Tiers Data
     const pcTiers = {
         povo: {
             name: "PC do Povo",
             badge: "Econômico",
-            image: "https://images.unsplash.com/photo-1587202377425-8b6033052194?auto=format&fit=crop&q=80&w=400",
+            image: "images/1.png",
             fps: "60+ (Full HD)",
             costPerFrame: "R$ 41,66",
-            monitor: "1080p 60Hz",
             components: [
                 { part: "Processador (CPU)", name: "Ryzen 5 4600G", price: 650.00, store: "Pichau", link: "https://pichau.com.br" },
                 { part: "Placa-Mãe", name: "A520M-E", price: 450.00, store: "Terabyte", link: "https://terabyteshop.com.br" },
@@ -52,10 +53,9 @@ document.addEventListener('DOMContentLoaded', function() {
         basico: {
             name: "PC Básico",
             badge: "Entrada",
-            image: "https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&q=80&w=400",
+            image: "images/2.png",
             fps: "100+ (Full HD)",
             costPerFrame: "R$ 38,00",
-            monitor: "1080p 75Hz",
             components: [
                 { part: "Processador (CPU)", name: "Ryzen 5 5500", price: 750.00, store: "Pichau", link: "https://pichau.com.br" },
                 { part: "Placa-Mãe", name: "B450M-DS3H", price: 550.00, store: "Terabyte", link: "https://terabyteshop.com.br" },
@@ -71,10 +71,9 @@ document.addEventListener('DOMContentLoaded', function() {
         intermediario: {
             name: "PC Intermediário",
             badge: "Equilibrado",
-            image: "https://images.unsplash.com/photo-1547082299-de196ea013d6?auto=format&fit=crop&q=80&w=400",
+            image: "images/3.png",
             fps: "144+ (Full HD)",
             costPerFrame: "R$ 38,19",
-            monitor: "1080p 144Hz",
             components: [
                 { part: "Processador (CPU)", name: "Ryzen 5 5600", price: 900.00, store: "Pichau", link: "https://pichau.com.br" },
                 { part: "Placa-Mãe", name: "B550M-PLUS", price: 850.00, store: "Terabyte", link: "https://terabyteshop.com.br" },
@@ -90,10 +89,9 @@ document.addEventListener('DOMContentLoaded', function() {
         alto: {
             name: "PC Alto Desempenho",
             badge: "Performance",
-            image: "https://images.unsplash.com/photo-1625842268584-8f3bf9ff16a0?auto=format&fit=crop&q=80&w=400",
+            image: "images/4.png",
             fps: "100+ (Quad HD)",
             costPerFrame: "R$ 85,00",
-            monitor: "1440p 144Hz",
             components: [
                 { part: "Processador (CPU)", name: "Core i5-13600K", price: 1800.00, store: "Kabum", link: "https://kabum.com.br" },
                 { part: "Placa-Mãe", name: "Z790M Gaming", price: 1200.00, store: "Terabyte", link: "https://terabyteshop.com.br" },
@@ -109,10 +107,9 @@ document.addEventListener('DOMContentLoaded', function() {
         top: {
             name: "PC Top",
             badge: "Elite",
-            image: "https://images.unsplash.com/photo-1603481546238-487240415921?auto=format&fit=crop&q=80&w=400",
+            image: "images/5.png",
             fps: "144+ (Quad HD)",
             costPerFrame: "R$ 83,33",
-            monitor: "1440p 240Hz",
             components: [
                 { part: "Processador (CPU)", name: "Ryzen 7 7800X3D", price: 2500.00, store: "Kabum", link: "https://kabum.com.br" },
                 { part: "Placa-Mãe", name: "X670E Gaming WIFI", price: 2200.00, store: "Terabyte", link: "https://terabyteshop.com.br" },
@@ -128,10 +125,9 @@ document.addEventListener('DOMContentLoaded', function() {
         entusiasta: {
             name: "PC Entusiasta",
             badge: "Ultimate",
-            image: "https://images.unsplash.com/photo-1614624532983-4ce03382d63d?auto=format&fit=crop&q=80&w=400",
+            image: "images/6.png",
             fps: "120+ (4K)",
             costPerFrame: "R$ 208,33",
-            monitor: "4K 144Hz OLED",
             components: [
                 { part: "Processador (CPU)", name: "Core i9-14900KS", price: 4500.00, store: "Kabum", link: "https://kabum.com.br" },
                 { part: "Placa-Mãe", name: "ROG Maximus Z790 Dark Hero", price: 5500.00, store: "Terabyte", link: "https://terabyteshop.com.br" },
@@ -146,12 +142,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
-    // Calculate Totals and Render Home Cards
+    // Render Home Cards
     const homeGrid = document.querySelector('.pc-grid');
     if (homeGrid) {
         homeGrid.innerHTML = Object.entries(pcTiers).map(([key, tier]) => {
             const total = tier.components.reduce((sum, comp) => sum + comp.price, 0);
-            tier.totalValue = total; // Store calculated total
+            tier.totalValue = total;
+            const installmentValue = total * 1.15;
+            const perInstallment = installmentValue / 10;
             return `
                 <div class="pc-card" data-tier="${key}">
                     <div class="pc-badge">${tier.badge}</div>
@@ -159,10 +157,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="pc-info">
                         <h3>${tier.name}</h3>
                         <div class="pc-stats">
-                            <div class="stat"><span>Valor Total:</span> R$ ${total.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</div>
+                            <div class="stat"><span>À Vista:</span> <span style="color: var(--accent-purple); font-weight: 600;">R$ ${total.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span></div>
+                            <div class="stat"><span>Parcelado:</span> <span style="color: var(--accent-purple); font-weight: 600;">10x R$ ${perInstallment.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span></div>
                             <div class="stat"><span>FPS:</span> ${tier.fps}</div>
                             <div class="stat"><span>Custo/Frame:</span> ${tier.costPerFrame}</div>
-                            <div class="stat"><span>Monitor:</span> ${tier.monitor}</div>
                         </div>
                         <button class="btn-details">Ver Componentes</button>
                     </div>
@@ -173,167 +171,289 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Modal Logic
     const resultModal = document.getElementById('result-modal');
-    const closeModal = document.querySelector('.close-modal');
-    
+    const maintenanceModal = document.getElementById('maintenance-modal');
+    const shareModal = document.getElementById('share-modal');
+    const emailModal = document.getElementById('email-modal');
+
     document.addEventListener('click', (e) => {
-        if (e.target.classList.contains('btn-details')) {
-            const tierKey = e.target.closest('.pc-card').getAttribute('data-tier');
-            const data = pcTiers[tierKey];
-            showTierDetails(data);
+        // Ver Componentes (Home ou Usados)
+        if (e.target.classList.contains('btn-details') && !e.target.classList.contains('btn-maintenance')) {
+            const card = e.target.closest('.pc-card');
+            const tierKey = card.getAttribute('data-tier');
+            const isUsed = card.closest('#used-grid');
+            
+            const data = isUsed ? usedPCs.find(p => p.id === tierKey) : pcTiers[tierKey];
+            showTierDetails(data, isUsed);
         }
+
+        // Manutenção (Apenas Usados)
+        if (e.target.classList.contains('btn-maintenance')) {
+            const id = e.target.closest('.pc-card').getAttribute('data-tier');
+            const pc = usedPCs.find(p => p.id === id);
+            showMaintenance(pc);
+        }
+
+        // Comprar Agora (Usados -> Carrinho)
+        if (e.target.classList.contains('btn-buy-used')) {
+            const id = e.target.closest('.pc-card').getAttribute('data-tier');
+            const pc = usedPCs.find(p => p.id === id);
+            addToCart(pc);
+            document.getElementById('cart-nav-link').click();
+        }
+
+        // Abrir Todos (Modal Home)
+        if (e.target.id === 'btn-open-all-links') {
+            const tierKey = resultModal.getAttribute('data-active-tier');
+            const data = pcTiers[tierKey];
+            data.components.forEach((comp, index) => {
+                if (comp.link && comp.link !== '#') {
+                    setTimeout(() => window.open(comp.link, '_blank'), index * 300);
+                }
+            });
+        }
+
+        // Modal Close Triggers (X button)
+        if (e.target.classList.contains('close-modal')) {
+            const modal = e.target.closest('.modal');
+            if (modal) modal.style.display = 'none';
+        }
+
+        // Modais Triggers
+        if (e.target.id === 'btn-share-modal') shareModal.style.display = 'block';
+        if (e.target.id === 'btn-email-modal') emailModal.style.display = 'block';
+        if (e.target.id === 'cancel-email') emailModal.style.display = 'none';
     });
 
-    function showTierDetails(data) {
+    function showTierDetails(data, isUsed) {
         const modalContent = document.querySelector('.pc-config-result');
         const modalTitle = resultModal.querySelector('h2');
+        
+        if (!isUsed) {
+            const tierKey = Object.keys(pcTiers).find(key => pcTiers[key].name === data.name);
+            resultModal.setAttribute('data-active-tier', tierKey);
+        }
+
         modalTitle.innerHTML = `Componentes: <span>${data.name}</span>`;
 
         let html = `
-            <div class="component-list-header">
+            <div class="component-list-header" style="${isUsed ? 'grid-template-columns: 1fr 1fr; text-align: center;' : ''}">
                 <div>Peça</div>
-                <div>Modelo</div>
-                <div>Valor</div>
-                <div>Loja</div>
+                <div style="${isUsed ? 'text-align: center;' : ''}">Modelo</div>
+                ${!isUsed ? '<div>Valor</div>' : ''}
+                ${!isUsed ? '<div>Loja</div>' : ''}
             </div>
         `;
 
         data.components.forEach(comp => {
             html += `
-                <div class="component-row">
-                    <div class="comp-part">${comp.part}</div>
-                    <div class="comp-name">${comp.name}</div>
-                    <div class="comp-price">R$ ${comp.price.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</div>
-                    <div><a href="${comp.link}" target="_blank" class="shop-link">${comp.store}</a></div>
+                <div class="component-row" style="${isUsed ? 'grid-template-columns: 1fr 1fr; text-align: center; padding: 15px;' : ''}">
+                    <div class="comp-part" style="${isUsed ? 'font-weight: 700; color: white;' : ''}">${comp.part}</div>
+                    <div class="comp-name" style="${isUsed ? 'text-align: center;' : ''}">${comp.name}</div>
+                    ${!isUsed ? `<div class="comp-price">R$ ${comp.price.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</div>` : ''}
+                    ${!!isUsed ? '' : `<div><a href="${comp.link}" target="_blank" class="shop-link">${comp.store}</a></div>`}
                 </div>
             `;
         });
 
+        if (!isUsed) {
+            html += `<button class="btn-open-all" id="btn-open-all-links">Abrir Todos</button>`;
+        }
+
         modalContent.innerHTML = html;
 
-        // Total Price Update
-        document.querySelector('.price-cash p').textContent = `R$ ${data.totalValue.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
-        const installmentValue = data.totalValue * 1.15;
-        document.querySelector('.price-installment p').textContent = `R$ ${installmentValue.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
+        const total = isUsed ? data.price : data.totalValue;
+        const installment = total * 1.15;
+        const perInst = installment / 10;
+
+        document.querySelector('.price-cash p').innerHTML = `<span>R$ ${total.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span>`;
+        document.querySelector('.price-installment').innerHTML = `
+            <h3>Parcelado</h3>
+            <div class="price-installment-details">
+                <span class="total-installment">R$ ${installment.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span> <br>
+                <span class="per-installment">10x R$ ${perInst.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span>
+            </div>
+        `;
 
         resultModal.style.display = 'block';
     }
 
-    // Close Modal
-    if (closeModal) {
-        closeModal.addEventListener('click', () => {
-            resultModal.style.display = 'none';
-        });
+    function showMaintenance(pc) {
+        const content = document.getElementById('maintenance-content');
+        content.innerHTML = pc.maintenance.split(',').map(item => `
+            <div class="maintenance-item"><i class="fas fa-check-circle" style="color: var(--accent-purple); margin-right: 10px;"></i> ${item.trim()}</div>
+        `).join('');
+        maintenanceModal.style.display = 'block';
     }
-
-    window.addEventListener('click', (e) => {
-        if (e.target === resultModal) {
-            resultModal.style.display = 'none';
-        }
-    });
 
     // Monitors Page Logic
     const monitorRecommendations = {
-        povo: { name: "1080p 60Hz IPS", setup: "PC do Povo", specs: "Frequência: 60Hz | Painel: IPS | Tempo: 5ms", price: "R$ 600,00", image: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&q=80&w=400" },
-        basico: { name: "1080p 75Hz Gamer", setup: "PC Básico", specs: "Frequência: 75Hz | Painel: VA | Tempo: 1ms", price: "R$ 850,00", image: "https://images.unsplash.com/photo-1547119957-637f8679db1e?auto=format&fit=crop&q=80&w=400" },
-        intermediario: { name: "1080p 144Hz Pro", setup: "PC Intermediário", specs: "Frequência: 144Hz | Painel: IPS | Tempo: 1ms", price: "R$ 1.200,00", image: "https://images.unsplash.com/photo-1551645120-d70bfe84c826?auto=format&fit=crop&q=80&w=400" },
-        alto: { name: "Quad HD 144Hz Elite", setup: "PC Alto Desempenho", specs: "Frequência: 144Hz | Resolução: 1440p | Tempo: 0.5ms", price: "R$ 2.500,00", image: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&q=80&w=400" },
-        top: { name: "Quad HD 240Hz Ultra", setup: "PC Top", specs: "Frequência: 240Hz | Resolução: 1440p | Painel: OLED", price: "R$ 4.500,00", image: "https://images.unsplash.com/photo-1616763355548-1b606f439f86?auto=format&fit=crop&q=80&w=400" },
-        entusiasta: { name: "4K 144Hz OLED Ultimate", setup: "PC Entusiasta", specs: "Resolução: 4K | Frequência: 144Hz | Painel: OLED 42\"", price: "R$ 7.500,00", image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=400" }
+        povo: { name: "1080p 60Hz IPS", setup: "PC do Povo", res: "FHD (1080p)", type: "Plana", ratio: "16:9", specs: "Frequência: 60Hz | Painel: IPS | Tempo: 5ms", price: 600.00, image: "images/11.png", link: "https://www.amazon.com.br" },
+        basico: { name: "1080p 75Hz Gamer", setup: "PC Básico", res: "FHD (1080p)", type: "Plana", ratio: "16:9", specs: "Frequência: 75Hz | Painel: VA | Tempo: 1ms", price: 850.00, image: "images/22.png", link: "https://www.pichau.com.br" },
+        intermediario: { name: "1080p 144Hz Pro", setup: "PC Intermediário", res: "FHD (1080p)", type: "Plana", ratio: "16:9", specs: "Frequência: 144Hz | Painel: IPS | Tempo: 1ms", price: 1200.00, image: "images/33.png", link: "https://www.terabyteshop.com.br" },
+        alto: { name: "Quad HD 144Hz Elite", setup: "PC Alto Desempenho", res: "QHD (1440p)", type: "Curva", ratio: "16:9", specs: "Frequência: 144Hz | Tempo: 0.5ms", price: 2500.00, image: "images/44.png", link: "https://www.mercadolivre.com.br" },
+        top: { name: "Quad HD 240Hz Ultra", setup: "PC Top", res: "QHD (1440p)", type: "Plana", ratio: "21:9", specs: "Frequência: 240Hz | Painel: OLED", price: 4500.00, image: "images/55.png", link: "https://www.kabum.com.br" },
+        entusiasta: { name: "4K 144Hz OLED Ultimate", setup: "PC Entusiasta", res: "4K (2160p)", type: "Curva", ratio: "32:9", specs: "Resolução: 4K | Frequência: 144Hz | Painel: OLED", price: 7500.00, image: "images/66.png", link: "https://patoloco.com.br" }
     };
 
     const monitorsGrid = document.getElementById('monitors-grid');
     if (monitorsGrid) {
-        monitorsGrid.innerHTML = Object.values(monitorRecommendations).map(mon => `
-            <div class="pc-card">
-                <div class="pc-badge">Ideal para ${mon.setup}</div>
-                <img src="${mon.image}" alt="${mon.name}">
-                <div class="pc-info">
-                    <h3>${mon.name}</h3>
-                    <p>${mon.specs}</p>
-                    <div class="used-price">${mon.price}</div>
-                    <button class="btn-primary">Comprar Agora</button>
+        monitorsGrid.innerHTML = Object.values(monitorRecommendations).map(mon => {
+            const perInst = (mon.price * 1.15) / 10;
+            return `
+                <div class="pc-card">
+                    <div class="pc-badge">Ideal para ${mon.setup}</div>
+                    <img src="${mon.image}" alt="${mon.name}">
+                    <div class="pc-info">
+                        <h3>${mon.name}</h3>
+                        <p>${mon.specs}<br>Resolução: ${mon.res} | ${mon.type} | ${mon.ratio}</p>
+                        <div class="pc-stats monitor-prices">
+                            <div class="stat"><span>À Vista:</span> <span class="price-value" style="color: var(--accent-purple); font-weight: 600;">R$ ${mon.price.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span></div>
+                            <div class="stat"><span>Parcelado:</span> <span class="price-value" style="color: var(--accent-purple); font-weight: 600;">10x R$ ${perInst.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span></div>
+                        </div>
+                        <a href="${mon.link}" target="_blank" class="btn-details btn-buy-now" style="text-align: center; display: block; text-decoration: none;">Comprar Agora</a>
+                    </div>
                 </div>
-            </div>
-        `).join('');
+            `;
+        }).join('');
     }
 
-    // Used PCs Logic with Sorting
+    // Used PCs Logic
     let usedPCs = [
-        { name: "PC Gamer Ryzen 5 3600 + RTX 2060", image: "https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&q=80&w=400", maintenance: "Limpeza profunda, troca de fans e pasta térmica Thermal Grizzly.", price: 2800.00, fps: 120, costFrame: 23.33 },
-        { name: "Workstation Xeon E5-2670 v3", image: "https://images.unsplash.com/photo-1587202377425-8b6033052194?auto=format&fit=crop&q=80&w=400", maintenance: "Revisão de VRM, upgrade de BIOS e limpeza de contatos.", price: 1500.00, fps: 45, costFrame: 33.33 },
-        { name: "PC Gamer i7-10700K + RTX 3070 Ti", image: "https://images.unsplash.com/photo-1625842268584-8f3bf9ff16a0?auto=format&fit=crop&q=80&w=400", maintenance: "Recuperação de GPU, troca de thermalpads e stress test de 48h.", price: 5200.00, fps: 200, costFrame: 26.00 }
+        { id: "u1", name: "PC Gamer Ryzen 5 3600 + RTX 2060", image: "images/111.png", maintenance: "Limpeza profunda, troca de fans, pasta térmica Thermal Grizzly", price: 2800.00, fps: "120 FPS", costFrame: "R$ 23,33", components: [
+            { part: "Processador (CPU)", name: "Ryzen 5 3600", price: 500 }, 
+            { part: "Placa-Mãe", name: "Gigabyte B450M DS3H", price: 400 }, 
+            { part: "Placa de Video (GPU)", name: "EVGA RTX 2060 6GB", price: 1200 }, 
+            { part: "Memória Ram", name: "16GB (2x8) DDR4 3200MHz", price: 300 }, 
+            { part: "Armazenamento (SSD)", name: "500GB NVMe M.2", price: 200 }, 
+            { part: "Fonte", name: "Corsair CV550 80 Plus", price: 200 },
+            { part: "Cooler", name: "AMD Wraith Stealth", price: 0 },
+            { part: "Fans", name: "3x 120mm RGB Inclusas", price: 0 },
+            { part: "Gabinete", name: "Redragon Wheel Jack", price: 0 }
+        ]},
+        { id: "u2", name: "Workstation Xeon E5-2670 v3", image: "images/222.png", maintenance: "Revisão de VRM, upgrade de BIOS, limpeza de contatos", price: 1500.00, fps: "45 FPS", costFrame: "R$ 33,33", components: [
+            { part: "Processador (CPU)", name: "Intel Xeon E5-2670 v3", price: 300 }, 
+            { part: "Placa-Mãe", name: "Atermiter X99 Turbo", price: 400 }, 
+            { part: "Placa de Video (GPU)", name: "Zotac GTX 1050 Ti 4GB", price: 400 }, 
+            { part: "Memória Ram", name: "32GB (4x8) DDR4 ECC", price: 200 }, 
+            { part: "Armazenamento (SSD)", name: "240GB SATA III", price: 100 }, 
+            { part: "Fonte", name: "500W 80 Plus White", price: 100 },
+            { part: "Cooler", name: "Air Cooler Dual Fan", price: 0 },
+            { part: "Fans", name: "2x 120mm Pretas", price: 0 },
+            { part: "Gabinete", name: "Gabinete Mid Tower Office", price: 0 }
+        ]},
+        { id: "u3", name: "PC Gamer i7-10700K + RTX 3070 Ti", image: "images/333.png", maintenance: "Recuperação de GPU, troca de thermalpads, stress test 48h", price: 5200.00, fps: "200 FPS", costFrame: "R$ 26,00", components: [
+            { part: "Processador (CPU)", name: "Core i7-10700K", price: 1200 }, 
+            { part: "Placa-Mãe", name: "ASUS Prime Z490-P", price: 800 }, 
+            { part: "Placa de Video (GPU)", name: "Gigabyte RTX 3070 Ti Gaming OC", price: 2200 }, 
+            { part: "Memória Ram", name: "16GB (2x8) DDR4 3600MHz RGB", price: 400 }, 
+            { part: "Armazenamento (SSD)", name: "1TB NVMe Gen3", price: 400 }, 
+            { part: "Fonte", name: "XPG Core Reactor 750W Gold", price: 200 },
+            { part: "Cooler", name: "Water Cooler 240mm ARGB", price: 0 },
+            { part: "Fans", name: "6x 120mm ARGB Kit", price: 0 },
+            { part: "Gabinete", name: "Lian Li Lancool II Mesh", price: 0 }
+        ]}
     ];
 
     const usedGrid = document.getElementById('used-grid');
-    const usedSort = document.getElementById('used-sort');
-
-    function renderUsedPCs() {
-        if (!usedGrid) return;
-        usedGrid.innerHTML = usedPCs.map(pc => `
-            <div class="used-card">
-                <img src="${pc.image}" alt="${pc.name}">
-                <div class="used-info">
-                    <h3>${pc.name}</h3>
-                    <p><strong>Manutenção:</strong> ${pc.maintenance}</p>
-                    <div class="used-price">R$ ${pc.price.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</div>
-                    <div class="stat"><span>FPS:</span> ${pc.fps} | <span>C/F:</span> R$ ${pc.costFrame.toFixed(2)}</div>
-                    <button class="btn-primary">Ver Detalhes</button>
+    if (usedGrid) {
+        usedGrid.innerHTML = usedPCs.map(pc => {
+            const installmentValue = pc.price * 1.15;
+            const perInstallment = installmentValue / 10;
+            return `
+                <div class="pc-card" data-tier="${pc.id}">
+                    <img src="${pc.image}" alt="${pc.name}" style="transition: transform 0.5s ease;">
+                    <div class="pc-info">
+                        <h3>${pc.name}</h3>
+                        <div class="pc-stats">
+                            <div class="stat"><span>À Vista:</span> <span style="color: var(--accent-purple); font-weight: 600;">R$ ${pc.price.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span></div>
+                            <div class="stat"><span>Parcelado:</span> <span style="color: var(--accent-purple); font-weight: 600;">10x R$ ${perInstallment.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span></div>
+                            <div class="stat"><span>FPS:</span> ${pc.fps}</div>
+                            <div class="stat"><span>Custo/Frame:</span> ${pc.costFrame}</div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px;">
+                            <button class="btn-details">Ver Componentes</button>
+                            <button class="btn-details btn-maintenance" style="background: var(--accent-blue); border-color: var(--accent-blue);">Manutenção</button>
+                        </div>
+                        <button class="btn-primary btn-buy-used btn-buy-now-green">Comprar Agora</button>
+                    </div>
                 </div>
+            `;
+        }).join('');
+    }
+
+    // Cart Logic
+    function addToCart(pc) {
+        // Verifica se o item já está no carrinho para não duplicar
+        if (!cart.find(item => item.id === pc.id)) {
+            cart.push(pc);
+            renderCart();
+        }
+    }
+
+    function removeFromCart(id) {
+        cart = cart.filter(item => item.id !== id);
+        renderCart();
+    }
+
+    function renderCart() {
+        const list = document.getElementById('cart-items-list');
+        if (!list) return;
+        
+        if (cart.length === 0) {
+            list.innerHTML = "<p style='text-align: center; padding: 2rem; color: var(--text-secondary);'>Seu carrinho está vazio.</p>";
+            updateSummary(0);
+            return;
+        }
+
+        list.innerHTML = cart.map(item => `
+            <div class="cart-item" data-id="${item.id}">
+                <img src="${item.image}" alt="${item.name}">
+                <div class="cart-item-info">
+                    <h3>${item.name}</h3>
+                    <p>PC Gamer Revisado</p>
+                    <button class="btn-remove-item" onclick="removeFromCart('${item.id}')">
+                        <i class="fas fa-trash"></i> Excluir Item
+                    </button>
+                </div>
+                <div class="cart-item-price">R$ ${item.price.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</div>
             </div>
         `).join('');
+
+        const subtotal = cart.reduce((s, i) => s + i.price, 0);
+        updateSummary(subtotal);
     }
 
-    if (usedSort) {
-        usedSort.addEventListener('change', () => {
-            const val = usedSort.value;
-            if (val === 'price-asc') usedPCs.sort((a, b) => a.price - b.price);
-            else if (val === 'price-desc') usedPCs.sort((a, b) => b.price - a.price);
-            else if (val === 'fps-desc') usedPCs.sort((a, b) => b.fps - a.fps);
-            else if (val === 'cost-frame-asc') usedPCs.sort((a, b) => a.costFrame - b.costFrame);
-            renderUsedPCs();
-        });
+    function updateSummary(total) {
+        const subtotalEl = document.getElementById('summary-subtotal');
+        const totalEl = document.getElementById('summary-total');
+        
+        if (subtotalEl) subtotalEl.textContent = `R$ ${total.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
+        if (totalEl) totalEl.textContent = `R$ ${total.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
     }
 
-    renderUsedPCs();
+    // Tornar removeFromCart global para o onclick
+    window.removeFromCart = removeFromCart;
 
-    // Tutorials Expansion
+    // Tutorials & Forms (Mantidos conforme anterior)
     const tutorialItems = [
-        { title: "Processador (CPU)", icon: "fas fa-microchip" },
-        { title: "Placa-Mãe", icon: "fas fa-columns" },
-        { title: "Placa de Video (GPU)", icon: "fas fa-vr-cardboard" },
-        { title: "Memória Ram", icon: "fas fa-memory" },
-        { title: "Armazenamento (SSD)", icon: "fas fa-hdd" },
-        { title: "Fonte", icon: "fas fa-plug" },
-        { title: "Cooler", icon: "fas fa-fan" },
-        { title: "Fans", icon: "fas fa-wind" },
-        { title: "Gabinete", icon: "fas fa-box" },
-        { title: "Monitor", icon: "fas fa-desktop" },
-        { title: "Teclado", icon: "fas fa-keyboard" },
-        { title: "Mouse", icon: "fas fa-mouse" },
-        { title: "Fone", icon: "fas fa-headphones" }
+        { title: "Processador (CPU)", icon: "fas fa-microchip" }, { title: "Placa-Mãe", icon: "fas fa-columns" }, { title: "Placa de Video (GPU)", icon: "fas fa-vr-cardboard" },
+        { title: "Memória Ram", icon: "fas fa-memory" }, { title: "Armazenamento (SSD)", icon: "fas fa-hdd" }, { title: "Fonte", icon: "fas fa-plug" },
+        { title: "Cooler", icon: "fas fa-fan" }, { title: "Fans", icon: "fas fa-wind" }, { title: "Gabinete", icon: "fas fa-box" },
+        { title: "Monitor", icon: "fas fa-desktop" }, { title: "Teclado", icon: "fas fa-keyboard" }, { title: "Mouse", icon: "fas fa-mouse" }, { title: "Fone", icon: "fas fa-headphones" }
     ];
 
     const tutorialsGrid = document.getElementById('tutorials-grid');
     if (tutorialsGrid) {
         tutorialsGrid.innerHTML = tutorialItems.map((item, index) => `
             <div class="video-card">
-                <div class="video-placeholder">
-                    <i class="fab fa-youtube"></i>
-                    <span>Vídeo em Breve: ${item.title}</span>
-                </div>
+                <div class="video-placeholder"><i class="fab fa-youtube"></i><span>Vídeo: ${item.title}</span></div>
                 <h3>${index + 1}. ${item.title}</h3>
-                <p>Guia completo sobre como escolher o melhor ${item.title} para o seu uso.</p>
+                <p>Guia completo sobre como escolher o melhor ${item.title}.</p>
             </div>
         `).join('');
     }
 
-    // Contact Form
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Mensagem enviada com sucesso! Em breve entraremos em contato.');
-            contactForm.reset();
-        });
-    }
+    window.addEventListener('click', (e) => {
+        if (e.target.classList.contains('modal')) e.target.style.display = 'none';
+    });
 });
