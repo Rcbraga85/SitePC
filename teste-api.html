@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste API - BuildMyRig</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, button {
+            padding: 8px;
+        }
+        button {
+            cursor: pointer;
+            background-color: #4169E1;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+        #results {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 4px;
+            min-height: 200px;
+        }
+        .product {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Teste da API de Pesquisa</h1>
+    
+    <div class="form-group">
+        <label for="search">Termo de pesquisa:</label>
+        <input type="text" id="search" placeholder="Digite pelo menos 3 caracteres" value="processador">
+    </div>
+    
+    <div class="form-group">
+        <label for="category">Categoria (opcional):</label>
+        <input type="text" id="category" placeholder="Ex: processador, placa-de-video">
+    </div>
+    
+    <div class="form-group">
+        <label for="maxPrice">Preço máximo (opcional):</label>
+        <input type="number" id="maxPrice" placeholder="Ex: 1000">
+    </div>
+    
+    <button id="searchBtn">Pesquisar</button>
+    
+    <div id="results">
+        <p>Os resultados aparecerão aqui...</p>
+    </div>
+    
+    <script>
+        document.getElementById('searchBtn').addEventListener('click', async function() {
+            const searchTerm = document.getElementById('search').value;
+            const category = document.getElementById('category').value;
+            const maxPrice = document.getElementById('maxPrice').value;
+            
+            if (searchTerm.length < 3) {
+                alert('O termo de pesquisa deve ter pelo menos 3 caracteres');
+                return;
+            }
+            
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '<p>Carregando...</p>';
+            
+            try {
+                // Construir a URL da API
+                let url = `http://localhost:3001/api/search?q=${encodeURIComponent(searchTerm)}`;
+                if (category) url += `&category=${encodeURIComponent(category)}`;
+                if (maxPrice) url += `&maxPrice=${encodeURIComponent(maxPrice)}`;
+                
+                console.log('Fazendo requisição para:', url);
+                
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                if (!response.ok) {
+                    throw new Error(data.message || 'Erro ao buscar componentes');
+                }
+                
+                // Exibir resultados
+                if (data.components && data.components.length > 0) {
+                    resultsDiv.innerHTML = `
+                        <h2>Resultados para "${data.query}" (${data.count} encontrados)</h2>
+                        <div id="products"></div>
+                    `;
+                    
+                    const productsDiv = document.getElementById('products');
+                    
+                    data.components.forEach(product => {
+                        productsDiv.innerHTML += `
+                            <div class="product">
+                                <h3>${product.name}</h3>
+                                <p><strong>Preço:</strong> R$ ${product.price.toFixed(2)}</p>
+                                <p><strong>Loja:</strong> ${product.store}</p>
+                                <p><strong>Categoria:</strong> ${product.category}</p>
+                                <p><a href="${product.productUrl}" target="_blank">Ver produto</a></p>
+                            </div>
+                        `;
+                    });
+                } else {
+                    resultsDiv.innerHTML = `<p>Nenhum resultado encontrado para "${data.query}"</p>`;
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+                resultsDiv.innerHTML = `<p>Erro ao buscar componentes: ${error.message}</p>`;
+            }
+        });
+    </script>
+</body>
+</html>

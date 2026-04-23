@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyGamerSetup - Monte seu PC Gamer</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="js/config.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <h1>my<span>gamer</span>setup</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="nav-link active" data-target="home">Home</a></li>
+                    <li><a href="#" class="nav-link" data-target="monitors">Monitores</a></li>
+                    <li><a href="#" class="nav-link" data-target="used">PCs Usados</a></li>
+                    <li><a href="#" class="nav-link" data-target="tutorials">Tutoriais</a></li>
+                    <li><a href="#" class="nav-link" data-target="contact">Contatos</a></li>
+                    <li><a href="#" class="nav-link" data-target="cart" id="cart-nav-link"><i class="fas fa-shopping-cart"></i> Carrinho</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section id="home-section" class="content-section active">
+                <section class="hero">
+                    <div class="hero-content">
+                        <h2>Os Melhores <span>Setups Gamer Hoje</span></h2>
+                        <p>Do básico ao entusiasta, encontre o PC ideal para o seu nível de jogo com os melhores preços do mercado.</p>
+                        <div class="last-update">Última atualização: …</div>
+                    </div>
+                    <div class="hero-image">
+                        <div class="pc-3d-model">
+                        </div>
+                    </div>
+                </section>
+
+                <section id="pc-categories" class="pc-categories">
+                    <h2>Escolha seu <span>Nível</span></h2>
+                    <div class="pc-grid">
+                        <!-- Os cards serão preenchidos ou atualizados via JS para garantir a soma correta -->
+                    </div>
+                </section>
+
+                <section class="searched-sites">
+                    <h3>Lojas em Destaque</h3>
+                    <div class="sites-logos">
+                        <a href="http://www.kabum.com.br" target="_blank" title="Kabum"><img src="images/kabum.png" alt="Kabum"></a>
+                        <a href="https://www.pichau.com.br" target="_blank" title="Pichau"><img src="images/pichau.png" alt="Pichau"></a>
+                        <a href="https://www.terabyteshop.com.br" target="_blank" title="Terabyte"><img src="images/tera.png" alt="Terabyte"></a>
+                        <a href="https://www.amazon.com.br/" target="_blank" title="Amazon"><img src="images/amazon.png" alt="Amazon"></a>
+                        <a href="https://www.mercadolivre.com.br/" target="_blank" title="Mercado Livre"><img src="images/ml.png" alt="Mercado Livre"></a>
+                        <a href="https://patoloco.com.br/" target="_blank" title="Patoloco"><img src="images/pato.png" alt="Patoloco"></a>
+                        <a href="https://www.alligatorshop.com.br/" target="_blank" title="Alligator Shop"><img src="images/alligator.png" alt="Alligator Shop"></a>
+                        <a href="https://www.gkinfostore.com.br/" target="_blank" title="GK Info Store"><img src="images/gk.png" alt="GK Info Store"></a>
+                    </div>
+                </section>
+            </section>
+
+            <section id="monitors-section" class="content-section">
+                <h2>Monitores <span>Recomendados</span></h2>
+                <p>A tela ideal para extrair o máximo de cada configuração.</p>
+                <div class="last-update">Última atualização: …</div>
+                <div class="monitors-grid" id="monitors-grid">
+                    <!-- Preenchido via JS -->
+                </div>
+            </section>
+
+            <section id="used-section" class="content-section">
+                <h2>PCs <span>Usados & Revisados</span></h2>
+                <p>Computadores de clientes que passaram por nossa manutenção rigorosa e estão prontos para um novo dono.</p>
+                <div class="last-update">Última atualização: …</div>
+                
+                <a href="#" class="banner-send-pc nav-link" data-target="contact">
+                    <i class="fas fa-tools"></i>
+                    <span>Como nos enviar seu PC</span>
+                </a>
+
+                <div class="used-filters">
+                    <span>Ordenar por:</span>
+                    <select id="used-sort">
+                        <option value="price-asc">Menor Valor</option>
+                        <option value="price-desc">Maior Valor</option>
+                        <option value="fps-desc">Mais FPS</option>
+                        <option value="cost-frame-asc">Melhor Custo/Frame</option>
+                    </select>
+                </div>
+
+                <div class="pc-grid" id="used-grid">
+                    <!-- Será preenchido via JS com layout idêntico à Home -->
+                </div>
+            </section>
+
+            <section id="cart-section" class="content-section">
+                <h2>Seu <span>Carrinho</span></h2>
+                <div class="cart-container">
+                    <div class="cart-items" id="cart-items-list">
+                        <!-- Itens do carrinho -->
+                    </div>
+                    
+                    <div class="cart-checkout">
+                        <div class="checkout-form">
+                            <h3>Dados do Cliente</h3>
+                            <div class="form-group">
+                                <input type="text" id="checkout-name" placeholder="Nome Completo" required>
+                                <input type="text" id="checkout-cpf" placeholder="CPF" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="checkout-email" placeholder="E-mail" required>
+                                <input type="tel" id="checkout-phone" placeholder="Telefone/WhatsApp" required>
+                            </div>
+                            
+                            <h3>Endereço de Entrega</h3>
+                            <div class="form-group">
+                                <input type="text" placeholder="CEP" id="cep-input" required>
+                                <input type="text" placeholder="Rua / Logradouro" id="address-street" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="Número" id="address-number" required>
+                                <input type="text" placeholder="Complemento" id="address-complement">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="Bairro" id="address-neighborhood" required>
+                                <input type="text" placeholder="Cidade / Estado" id="address-city-state" required>
+                            </div>
+
+                            <h3>Forma de Pagamento</h3>
+                            <div class="payment-methods">
+                                <label class="payment-option">
+                                    <input type="radio" name="payment" value="pix" checked>
+                                    <span><i class="fas fa-qrcode"></i> PIX</span>
+                                </label>
+                                <label class="payment-option">
+                                    <input type="radio" name="payment" value="card">
+                                    <span><i class="fas fa-credit-card"></i> Cartão de Crédito</span>
+                                </label>
+                            </div>
+                            
+                            <button class="btn-details btn-finalize btn-finalize-standard" id="finalize-order">Finalizar Pedido</button>
+                            <div id="payment-redirect-placeholder" class="payment-redirect-placeholder" style="display:none;"></div>
+                        </div>
+
+                        <div class="cart-summary">
+                            <h3>Resumo do Pedido</h3>
+                            <div class="summary-row">
+                                <span>Subtotal:</span>
+                                <span id="summary-subtotal">R$ 0,00</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Frete:</span>
+                                <span id="summary-shipping">R$ 0,00</span>
+                            </div>
+                            <div class="summary-row total">
+                                <span>Total:</span>
+                                <span id="summary-total">R$ 0,00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="tutorials-section" class="content-section">
+                <h2>Aprenda a <span>Escolher</span></h2>
+                <p>Série de tutoriais para você se tornar um expert em hardware.</p>
+                <div class="tutorials-grid" id="tutorials-grid">
+                    <!-- Expandido via JS -->
+                </div>
+            </section>
+
+            <section id="contact-section" class="content-section">
+                <h2>Fale <span>Conosco</span></h2>
+                
+                <div class="contact-container">
+                    <div class="contact-video-section">
+                        <video class="video-poster" id="contact-video-poster" poster="images/envio.png" controls preload="metadata">
+                            <source src="videos/envio-pc.mp4" type="video/mp4">
+                            <source src="videos/envio-pc.webm" type="video/webm">
+                            Seu navegador não suporta a reprodução de vídeo.
+                        </video>
+                        <div class="video-description">
+                            <h3>Procedimento de Envio</h3>
+                            <p>Neste vídeo explicamos passo a passo como embalar seu computador com segurança, os documentos necessários e como funciona nosso processo de triagem, manutenção e anúncio para venda ou retorno após o serviço.</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-section">
+                        <h3>Envie uma Mensagem</h3>
+                        <form id="contact-form">
+                            <input type="text" id="contact-name" placeholder="Seu Nome" required>
+                            <input type="email" id="contact-email" placeholder="Seu E-mail" required>
+                            <textarea id="contact-message" placeholder="Sua Mensagem" rows="5" required></textarea>
+                            <button type="submit" class="btn-details btn-contact-submit">Enviar Mensagem</button>
+                        </form>
+                    </div>
+
+                    <div class="contact-methods">
+                        <h3>Outros Canais</h3>
+                        <div class="methods-grid">
+                            <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" class="method-card"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                            <a href="https://www.instagram.com/mygamersetup" target="_blank" rel="noopener noreferrer" class="method-card"><i class="fab fa-instagram"></i> Instagram</a>
+                            <a href="mailto:contato@mygamersetup.com" class="method-card"><i class="fas fa-envelope"></i> E-mail</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-map">
+                        <h3>Nossa Localização</h3>
+                        <div class="map-placeholder">
+                            <!-- Link do Google Maps -->
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3656.123456789!2d-46.68535!3d-23.62123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce50da1234567%3A0x123456789abcdef!2sAv.%20Santo%20Amaro%2C%205355%20-%20Santo%20Amaro%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2004701-000!5e0!3m2!1spt-BR!2sbr!4v1234567890" 
+                                width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                            <p>Avenida Sto Amaro 5355 - Sala de Games, São Paulo-SP Brasil</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>my<span>gamer</span>setup</h3>
+                    <p>© 2024 MyGamerSetup. Todos os direitos reservados.</p>
+                </div>
+                <div class="footer-links">
+                    <ul>
+                        <li><a href="#">Sobre</a></li>
+                        <li><a href="#">Contato</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+                        <li><a href="#">API de Parceiros</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmygamersetup.com" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook"></i></a>
+                    <a href="https://x.com/mygamersetup" target="_blank" rel="noopener noreferrer">
+                        <img src="images/x.png" alt="X" style="width: 24px !important; height: auto; vertical-align: middle; transition: 0.3s; filter: brightness(1.5) grayscale(100%); opacity: 0.8;" 
+                        onmouseover="this.style.filter='invert(31%) sepia(94%) saturate(4156%) hue-rotate(253deg) brightness(88%) contrast(96%)'; this.style.opacity='1'; this.style.transform='scale(1.2)'" 
+                        onmouseout="this.style.filter='brightness(1.5) grayscale(100%)'; this.style.opacity='0.8'; this.style.transform='scale(1)'">
+                    </a>
+                    <a href="https://www.instagram.com/mygamersetup" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                    <a href="https://discord.gg/mygamersetup" target="_blank" rel="noopener noreferrer"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <div class="modal" id="result-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Sua Configuração Ideal</h2>
+            <div class="pc-config-result">
+                <!-- Aqui será inserido o resultado da configuração via JavaScript -->
+            </div>
+            <div class="total-price">
+                <div class="price-cash">
+                    <h3>À Vista</h3>
+                    <p class="price">R$ 0,00</p>
+                </div>
+                <div class="price-installment">
+                    <h3>Parcelado</h3>
+                    <p class="price">R$ 0,00</p>
+                </div>
+            </div>
+            <div class="result-actions">
+                <button class="btn-share" id="btn-share-modal">Compartilhar</button>
+                <button class="btn-export" id="btn-email-modal">Enviar por E-mail</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Novo Modal para Manutenção -->
+    <div class="modal" id="maintenance-modal">
+        <div class="modal-content mini-modal">
+            <span class="close-modal" id="close-maintenance">&times;</span>
+            <h3>Histórico de <span>Manutenção</span></h3>
+            <div id="maintenance-content" class="maintenance-list">
+                <!-- Preenchido via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Compartilhar -->
+    <div class="modal" id="share-modal">
+        <div class="modal-content mini-modal">
+            <span class="close-modal" id="close-share">&times;</span>
+            <h3>Compartilhar Configuração</h3>
+            <div class="share-options">
+                <a href="#" class="share-item x-social"><i class="fa-brands fa-x-twitter"></i> X (Twitter)</a>
+                <a href="#" class="share-item insta-social" id="share-insta-copy"><i class="fab fa-instagram"></i> Instagram (copiar link)</a>
+                <a href="#" class="share-item face-social"><i class="fab fa-facebook"></i> Facebook</a>
+                <a href="#" class="share-item whats-social"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal E-mail -->
+    <div class="modal" id="email-modal">
+        <div class="modal-content mini-modal">
+            <span class="close-modal" id="close-email">&times;</span>
+            <h3>Enviar por E-mail</h3>
+            <form id="modal-email-form">
+                <input type="email" name="dest" placeholder="Digite seu e-mail" required class="modal-input" autocomplete="email">
+                <div class="modal-form-buttons">
+                    <button type="button" class="btn-cancel" id="cancel-email">Cancelar</button>
+                    <button type="submit" class="btn-send">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
